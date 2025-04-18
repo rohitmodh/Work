@@ -1,3 +1,139 @@
-hello Readme!!
-thanks
-another commit
+🛒 Online Shopping App with Event-Driven Architecture using Kafka
+This project demonstrates an event-driven architecture using Node.js, Express.js, and Apache Kafka. The shopping application acts as a producer, sending product creation events to Kafka, while a separate consumer service listens to and processes those events.
+---
+
+## 📦 Features
+
+- Express-based shopping web app
+- Kafka-based event publishing for new products
+- Dockerized microservices with Kafka cluster
+- Kafka UI for monitoring topics and messages
+- Live reloading with `nodemon`
+- Scalable and extendable architecture
+
+---
+
+## 🏗️ Project Structure
+
+<pre>
+event-driven-architecture-kafka/
+│
+├── docker-compose.yml               # Compose file to run Kafka, Zookeeper, UI, Producer & Consumer
+│
+├── kafka-ui/                        # Kafka monitoring UI service
+│
+├── zookeeper/                       # Zookeeper Docker service (for Kafka coordination)
+│
+├── kafka/                           # Kafka brokers (clustered)
+│
+├── consumer/                        # Kafka consumer microservice
+│   ├── Dockerfile
+│   ├── index.js
+│   └── package.json
+│
+├── online-shopping-app/            # Express.js shopping app (Kafka producer)
+│   ├── Dockerfile
+│   ├── app.js
+│   ├── package.json
+│   ├── controllers/
+│   │   └── admin.js                 # Controller to handle product logic
+│   ├── models/
+│   │   └── product.js               # In-memory Product model
+│   ├── routes/
+│   │   ├── admin.js
+│   │   └── shop.js
+│   ├── views/                       # EJS templates
+│   └── public/                      # Static files
+│
+└── README.md
+</pre>
+
+---
+
+## ⚙️ Kafka & Docker Setup
+
+Kafka is configured as a **3-broker cluster** with Zookeeper. Kafka UI is also included for easier topic/message inspection.
+
+### Dockerized Services:
+
+- 🧠 Zookeeper
+- 📦 Kafka brokers (kafka1, kafka2, kafka3)
+- 🛍️ Online shopping app (Producer)
+- 📥 Kafka consumer service
+- 🖥️ Kafka UI (on port 8080)
+
+---
+
+## 🚀 How to Run the Project
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/event-driven-architecture-kafka.git
+cd event-driven-architecture-kafka
+
+    2. Build & Start All Services
+docker compose up --build
+
+Wait for all services to come up.
+
+3. Access the Services
+🛍️ Shopping App (Producer): http://localhost:3000
+
+📬 Kafka UI: http://localhost:8080
+
+🧪 Try It Out
+Go to http://localhost:3000/admin/add-product
+
+Add a new product (e.g., Name, Price, Image URL)
+
+The app publishes a Kafka event to the topic product-created
+
+The consumer service logs the event (viewable via Docker logs or terminal)
+
+💡 Kafka Behind the Scenes
+Producer sends product-created messages to Kafka.
+
+Consumer listens to the product-created topic.
+
+Kafka Brokers distribute the message across partitions.
+
+Kafka UI helps you inspect topics, messages, partitions.
+
+🛠️ Tech Stack
+Node.js + Express
+
+KafkaJS (Kafka client for Node.js)
+
+Apache Kafka (Clustered via Docker)
+
+Docker & Docker Compose
+
+EJS Templating
+
+Kafka UI
+
+📚 Concepts Covered
+Event-Driven Microservices
+
+Kafka Topics, Partitions, Offsets
+
+Consumer Groups & Load Balancing
+
+Microservice Decoupling via Messaging
+
+Docker Networking for Microservices
+
+📌 To Do / Improvements
+Store product data in MongoDB/PostgreSQL
+
+Add more event types (e.g., product-deleted)
+
+Separate microservices for orders, payments, users
+
+Add authentication & authorization
+
+Use Kafka schema registry (for schema validation)
+
+👨‍💻 Author
+Made with ❤️ by Rohit Modh
