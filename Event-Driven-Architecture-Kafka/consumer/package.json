@@ -1,0 +1,13 @@
+{
+    "name": "kafka-consumer",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+      "kafkajs": "^2.2.4",
+       "nodemon": "^3.0.0"
+    },
+    "scripts": {
+  "dev": "nodemon index.js"
+}
+  }
+  

@@ -1,0 +1,15 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+
+RUN npm install
+
+# Optional: install nodemon globally (not necessary if it's in devDeps)
+RUN npm install -g nodemon
+
+COPY . .
+
+# Use dev script (nodemon)
+CMD ["npm", "run", "dev"]
